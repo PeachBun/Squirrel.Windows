@@ -30,8 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	if (cmdLine.Find(L"--checkInstall") >= 0) {
 		// If we're already installed, exit as fast as possible
 		if (!MachineInstaller::ShouldSilentInstall()) {
-			exitCode = 0;
-			goto out;
+			return 0;
 		}
 
 		// Make sure update.exe gets silent
@@ -94,6 +93,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 out:
 	_Module->Term();
-	::CoUninitialize();
 	return exitCode;
 }
